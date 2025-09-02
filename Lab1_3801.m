@@ -9,14 +9,14 @@ clc
 tol=[1e-2,1e-4,1e-6,1e-8,1e-10]'; % tolerance values 
 
 for i=1:length(tol)
-    ODEsolver(tol(i));
+    ODEsolver(tol(i),i);
 end
 
-function ODEsolver(tol)
+function ODEsolver(tol,fig_num)
 %% Parameters 
 tspan=[0,20]';
 state0=[1; 0.5; -0.2; 0.3]';  % initial conditions (non-zero values)
-%state=[w,x,y,z];
+
 
 %% ODE45 
 [t,state]=ode45(@(t,state) ODEsystem(t,state),tspan,state0);
@@ -27,7 +27,9 @@ x=state(:,2);
 y=state(:,3);
 z=state(:,4);
 
-figure;
+figure(fig_num)
+sgtitle(sprintf('Solution with Tolerance = %.1e', tol))
+
 % subplot for w
 subplot(4,1,1)
 plot(t,w,'LineWidth',1.5);
@@ -54,6 +56,7 @@ grid on
 ylabel('z (n.d)')
 xlabel('Time (n.d)')
 
+set(gcf,'Name',sprintf('Tolerance %.1e', tol),'NumberTitle','off')
 
 %% function for dot values
 function dot_value= ODEsystem(t,state)
