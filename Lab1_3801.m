@@ -6,16 +6,42 @@ clc
 % File name: AirRelativeVelocityVectorToWindAngles
 % Created: 8/26/25
 
-tol=[1e-2,1e-4,1e-6,1e-8,1e-10]'; % tolerance values 
 
-for i=1:length(tol)
-    ODEsolver(tol(i),i);
-end
-
-function ODEsolver(tol,fig_num)
 %% Parameters 
 tspan=[0,20]';
 state0=[1; 0.5; -0.2; 0.3]';  % initial conditions (non-zero values)
+tol=[1e-2,1e-4,1e-6,1e-8,1e-10,1e-12]'; % tolerance values 
+
+final_values=zeros(length(tol),4);
+
+%% Error Values
+for i=1:length(tol)
+    [final_values(i,:),t,state] = ODEsolver(tol(i),i,tspan,state0);
+end
+
+reference_values=final_values(end,:);
+errors=abs(final_values(1:end-1, :)-reference_values);
+
+%% Create Table
+errors_table=errors';
+column_names={'1e-2','1e-4','1e-6','1e-8','1e-10'};
+row_names={'|w-w_r|','|x-x_r|','|y-y_r|','|z-z_r|'};
+table=array2table(errors_table,'VariableNames',column_names,'RowNames',row_names);
+disp(table)
+
+
+for i=1:length(tol)
+    ODEsolver(tol(i),i,tspan,state0);
+end
+
+function [final_values,t,state] = ODEsolver(tol,fig_num,tspan,state0)
+    % Set tolerances
+    opts = odeset('RelTol',tol,'AbsTol',tol);
+    
+    % Solve ODE
+    [t,state] = ode45(@ODEsystem, tspan, state0, opts);
+
+    final_values=state(end,:);
 
 
 %% ODE45 
