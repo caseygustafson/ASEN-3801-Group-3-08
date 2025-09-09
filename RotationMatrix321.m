@@ -2,11 +2,11 @@
 
 % Contributors: Isabelle Amodio
 % Course number: ASEN 3801
-% File name: DCM_321.m
-% Created: 8/26/25
+% File name: RotationMatrix321.m
+% Created: 9/9/2025
 
 
-function DCM= RotationMatrix(attitude321)
+function DCM= RotationMatrix321(attitude321)
 
 phi=attitude321(1);
 theta=attitude321(2);
