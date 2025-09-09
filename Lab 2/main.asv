@@ -18,19 +18,19 @@ State(1:3,:)=[];
 pos_N_target=State(:,6:8);
 pos_N_av=State(:,12:14);
 
-
 figure(1)
 plot3(pos_N_av(:,1),pos_N_av(:,2),pos_N_av(:,3),'b-','LineWidth',1.5)
 hold on
 plot3(pos_N_target(:,1),pos_N_target(:,2),pos_N_target(:,3),'r--','LineWidth',1.5)
 
-title('Positions of Vehicle and Target relative to N-Frame')
-xlabel('X-Position (mm)')
-ylabel('Y-Position (mm)')
-zlabel("Z-Position (mm)")
+title('Positions of Vehicle and Target in N-Frame')
+xlabel('X-Position (m)')
+ylabel('Y-Position (m)')
+zlabel("Z-Position (m)")
 legend('Aerospace Vehicle','Target','Location','best')
 
 grid on
 axis equal
 view(3)
 
+figure(1)
