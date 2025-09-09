@@ -1,10 +1,12 @@
-clear all 
-clc
 
-% Contributors: Isabelle Amodio
+% Contributors: Isabelle Amodio, Casey Gustafson, Hasan Kobeissy
 % Course number: ASEN 3801
-% File name: AirRelativeVelocityVectorToWindAngles
+% File name: Lab1_3801.m
 % Created: 8/26/25
+
+close all;
+clear all;
+clc;
 
 
 %% Parameters 
