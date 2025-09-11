@@ -19,6 +19,9 @@ pos_N_target=State(:,6:8)/1000;
 pos_N_av=State(:,12:14)/1000;
 
 
+rel_position_inert=tar_pos_inert-av_pos_inert;
+
+
 figure(1)
 plot3(pos_N_av(:,1),pos_N_av(:,2),pos_N_av(:,3),'b-','LineWidth',1.5)
 hold on
@@ -34,3 +37,20 @@ grid on
 axis equal
 view(3)
 
+figure(2)
+
+subplot(3,1,1)
+plot(t_vec,rel_position_inert(1,:),'LineWidth',1.5)
+xlabel('time (s)')
+ylabel('X-Component')
+title('Relative Postion of Target to Vehicle in E-Frame')
+
+subplot(3,1,2)
+plot(t_vec,rel_position_inert(2,:),'LineWidth',1.5)
+xlabel('time (s)')
+ylabel('Y-Component')
+
+subplot(3,1,3)
+plot(t_vec,rel_position_inert(3,:),'LineWidth',1.5)
+xlabel('time (s)')
+ylabel('Z-Component')
