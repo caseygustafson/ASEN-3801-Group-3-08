@@ -14,9 +14,9 @@ State=readmatrix("3801_Sec003_Test3.csv");
 % Get rid of NaNs
 State(1:3,:)=[];
 
-% Position vectors for target and vehicle in N-frame
-pos_N_target=State(:,6:8);
-pos_N_av=State(:,12:14);
+% Position vectors for target and vehicle in N-frame in meters
+pos_N_target=State(:,6:8)/1000;
+pos_N_av=State(:,12:14)/1000;
 
 
 figure(1)
